@@ -1,96 +1,66 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-const programs = [
+const courses = [
   {
-    title: "ИИ: внедрение и управление",
-    audience: "Руководители",
-    format: "Онлайн",
-    duration: "72 часа",
+    title: "Введение в ИИ и нейронные сети для руководителей",
+    audience: "Корпоративные клиенты",
+    hours: "4-16 ак. часов",
+    efficiency: "+20-30%",
   },
   {
     title: "ИИ в государственном управлении",
     audience: "Госслужащие",
-    format: "Очно / Онлайн",
-    duration: "40 часов",
+    hours: "4-16 ак. часов",
+    efficiency: "+30-35%",
   },
   {
-    title: "Генеративные модели в образовании",
-    audience: "Педагоги",
-    format: "Онлайн",
-    duration: "36 часов",
+    title: "ИИ и генеративные модели в образовании",
+    audience: "Преподаватели",
+    hours: "4-16 ак. часов",
+    efficiency: "+20-30%",
   },
   {
-    title: "Корпоративное внедрение ИИ",
-    audience: "IT-команды",
-    format: "Очный тренинг",
-    duration: "5 дней",
+    title: "Программа внедрения ИИ для корпоративных команд",
+    audience: "Корпоративные команды",
+    hours: "4-16 ак. часов",
+    efficiency: "+25-35%",
   },
   {
-    title: "ИИ в фармацевтике",
-    audience: "Специалисты",
-    format: "Онлайн",
-    duration: "48 часов",
+    title: "Искусственный интеллект в фармацевтике",
+    audience: "Специалисты R&D",
+    hours: "4-16 ак. часов",
+    efficiency: "+25-40%",
   },
 ];
 
 export default function Training() {
   return (
-    <section id="training" className="py-24 bg-gray-50">
+    <section className="section-padding bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Программы обучения
-          </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            11 программ повышения квалификации. Более 1 037 обученных
-            специалистов.
-          </p>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+          <div>
+            <p className="text-accent font-display text-sm font-semibold tracking-wider uppercase mb-3">Обучение</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-text">Курсы и программы</h2>
+            <p className="text-muted mt-3 max-w-xl">
+              Учебный центр АИИ — мост между технологиями и бизнесом, где теории мы предпочитаем рабочие инструменты.
+            </p>
+          </div>
+          <a href="/education" className="text-sm text-muted hover:text-accent transition-colors duration-300">Все курсы →</a>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {programs.map((program, i) => (
-            <motion.div
-              key={program.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all"
-            >
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
-                {program.title}
-              </h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Аудитория</span>
-                  <span className="font-medium text-gray-700">
-                    {program.audience}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Формат</span>
-                  <span className="font-medium text-gray-700">
-                    {program.format}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Длительность</span>
-                  <span className="font-medium text-gray-700">
-                    {program.duration}
-                  </span>
-                </div>
+        <div className="space-y-4">
+          {courses.map((c, i) => (
+            <div key={c.title} className="glass-card p-6 hover:border-accent/30 transition-all duration-300 group flex flex-col sm:flex-row sm:items-center gap-4">
+              <span className="font-display text-2xl font-bold text-accent/30 shrink-0 w-10">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-display text-base font-bold text-text group-hover:text-accent transition-colors duration-300">{c.title}</h3>
+                <p className="text-sm text-muted mt-1">{c.audience} · {c.hours}</p>
               </div>
-              <button className="mt-5 w-full py-2.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-xl hover:bg-blue-100 transition">
-                Подробнее
-              </button>
-            </motion.div>
+              <div className="shrink-0 px-4 py-2 bg-accent/10 rounded-lg">
+                <span className="font-display font-bold text-accent text-sm">{c.efficiency}</span>
+                <span className="text-xs text-muted ml-1">эффективность</span>
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -4,12 +4,16 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --color-bg: #0A0E1A;
+    --color-surface: #111827;
+    --color-border: #1E2640;
+    --color-accent: #F5A623;
+    --color-text: #FAFAFA;
+    --color-muted: #6B7280;
   }
 
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-bg text-text antialiased font-body;
   }
 
   html {
@@ -21,10 +25,10 @@
   .text-balance {
     text-wrap: balance;
   }
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-border rounded-2xl;
   }
-  .gradient-bg {
-    @apply bg-gradient-to-br from-[#0f1b4c] to-[#1e3a8a];
+  .section-padding {
+    @apply py-20 sm:py-28;
   }
 }

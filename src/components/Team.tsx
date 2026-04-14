@@ -1,72 +1,32 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const team = [
-  {
-    name: "Сергей Шумский",
-    role: "Генеральный директор",
-    bio: "Эксперт в области ИИ, кандидат физ.-мат. наук. Более 20 лет в разработке интеллектуальных систем.",
-  },
-  {
-    name: "Алексей Потапов",
-    role: "Научный руководитель",
-    bio: "Доктор технических наук. Специализация — AGI, когнитивные архитектуры, символьный ИИ.",
-  },
-  {
-    name: "Елена Разумова",
-    role: "Директор по обучению",
-    bio: "Разработка образовательных программ. Координация корпоративных тренингов и программ повышения квалификации.",
-  },
-  {
-    name: "Дмитрий Козлов",
-    role: "Руководитель R&D",
-    bio: "Компьютерное зрение, NLP, прогнозная аналитика. Руководство исследовательскими проектами.",
-  },
+  { name: "Денис Онацик", role: "Генеральный директор", initials: "ДО" },
+  { name: "Сандра Фадеева", role: "Зам. ген. директора", initials: "СФ" },
+  { name: "Ольга Волкова", role: "Исполнительный директор", initials: "ОВ" },
+  { name: "Кирилл Онацик", role: "Директор по маркетингу", initials: "КО" },
+  { name: "Пётр Маслак", role: "Технический директор", initials: "ПМ" },
 ];
 
 export default function Team() {
   return (
-    <section id="team" className="py-24">
+    <section className="section-padding">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Команда
-          </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            Учёные, инженеры и консультанты с многолетним опытом в области ИИ
-          </p>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+          <div>
+            <p className="text-accent font-display text-sm font-semibold tracking-wider uppercase mb-3">Команда</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-text">Руководство</h2>
+          </div>
+          <a href="/team" className="text-sm text-muted hover:text-accent transition-colors duration-300">Вся команда →</a>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {team.map((member, i) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center group"
-            >
-              <div className="w-28 h-28 mx-auto mb-5 rounded-2xl gradient-bg flex items-center justify-center text-white text-3xl font-bold">
-                {member.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          {team.map((m) => (
+            <div key={m.name} className="glass-card p-6 text-center hover:border-accent/30 transition-all duration-300 group">
+              <div className="w-16 h-16 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-4">
+                <span className="font-display font-bold text-accent text-lg">{m.initials}</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
-              <p className="text-sm font-medium text-blue-600 mb-3">
-                {member.role}
-              </p>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                {member.bio}
-              </p>
-            </motion.div>
+              <h3 className="font-display text-sm font-bold text-text group-hover:text-accent transition-colors duration-300">{m.name}</h3>
+              <p className="text-xs text-muted mt-1">{m.role}</p>
+            </div>
           ))}
         </div>
       </div>

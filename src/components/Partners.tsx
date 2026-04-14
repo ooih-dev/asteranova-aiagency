@@ -1,51 +1,37 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const partners = [
-  "Газпром Нефть",
-  "КамАЗ",
-  "Росстандарт",
-  "Росатом",
-  "ПМЭФ",
-  "Полная Энергетическая Сервисная Компания",
-  "Министерство цифрового развития",
-  "Сколково",
+  { name: "ПАО «Газпром нефть»", description: "Курсы ИИ и ML для руководящего состава" },
+  { name: "Росстандарт", description: "Разработка государственных стандартов по ИИ" },
+  { name: "Росатом", description: "Анализ продуктов BI, ERP, IIoT, PLM, MES" },
+  { name: "ПАО «КамАЗ»", description: "Обучение руководителей основам ИИ" },
+  { name: "Университет Иннополис", description: "Совместные образовательные программы" },
+  { name: "Фонд содействия инновациям", description: "Партнёрство в сфере развития ИИ" },
 ];
 
 export default function Partners() {
   return (
-    <section id="partners" className="py-24 bg-gray-50">
+    <section className="section-padding bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Партнёры
-          </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            59 партнёров — крупнейшие предприятия и государственные структуры России
+        <div className="text-center mb-16">
+          <p className="text-accent font-display text-sm font-semibold tracking-wider uppercase mb-3">Клиенты и партнёры</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-text">Нам доверяют</h2>
+          <p className="text-muted mt-3 max-w-2xl mx-auto">
+            Мы сотрудничаем с лидерами цифровой трансформации в России и за рубежом.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {partners.map((partner, i) => (
-            <motion.div
-              key={partner}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-white rounded-2xl p-6 flex items-center justify-center text-center border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all min-h-[100px]"
-            >
-              <span className="font-semibold text-gray-700 text-sm">
-                {partner}
-              </span>
-            </motion.div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {partners.map((p) => (
+            <div key={p.name} className="glass-card p-6 hover:border-accent/30 transition-all duration-300">
+              <h3 className="font-display text-base font-bold text-text mb-2">{p.name}</h3>
+              <p className="text-sm text-muted">{p.description}</p>
+            </div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-muted text-sm">
+            А также: Томский государственный университет, Московский инновационный кластер, НОВАТЭК, РАНХиГС и другие.
+          </p>
         </div>
       </div>
     </section>

@@ -1,94 +1,81 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 
-const navItems = [
-  { label: "Услуги", href: "#services" },
-  { label: "Проекты", href: "#projects" },
-  { label: "Обучение", href: "#training" },
-  { label: "Команда", href: "#team" },
-  { label: "Партнёры", href: "#partners" },
-  { label: "Контакты", href: "#contacts" },
-  { label: "Партнёрство", href: "/partnership", highlight: true },
+const navLinks = [
+  { href: "/", label: "Главная" },
+  { href: "/services", label: "Услуги" },
+  { href: "/projects", label: "Проекты" },
+  { href: "/education", label: "Обучение" },
+  { href: "/team", label: "Команда" },
+  { href: "/materials", label: "Материалы" },
+  { href: "/contacts", label: "Контакты" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-bg/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AI</span>
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
+              <span className="text-bg font-display font-bold text-sm">AI</span>
             </div>
-            <span className="font-bold text-lg text-gray-900">
+            <span className="font-display font-bold text-lg text-text">
               AI Agency
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
               <Link
-                key={item.href}
-                href={item.href}
-                className={
-                  item.highlight
-                    ? "ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium hover:opacity-90 transition"
-                    : "px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition rounded-lg hover:bg-gray-50"
-                }
+                key={link.href}
+                href={link.href}
+                className="px-3 py-2 text-sm text-muted hover:text-accent transition-colors duration-300"
               >
-                {item.label}
+                {link.label}
               </Link>
             ))}
+            <Link
+              href="/partnership"
+              className="ml-4 px-5 py-2 text-sm font-semibold bg-accent text-bg rounded-lg hover:bg-accent-hover transition-colors duration-300"
+            >
+              Партнёрство
+            </Link>
           </nav>
 
           <button
-            className="md:hidden p-2"
             onClick={() => setOpen(!open)}
+            className="lg:hidden flex flex-col gap-1.5 p-2"
             aria-label="Menu"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {open ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <span className={`block w-6 h-0.5 bg-text transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-text transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-text transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100"
-          >
-            <div className="px-4 py-4 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={
-                    item.highlight
-                      ? "block px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium text-center"
-                      : "block px-4 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50"
-                  }
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-96" : "max-h-0"}`}>
+        <nav className="px-4 pb-4 space-y-1 bg-bg/95 backdrop-blur-lg border-t border-border">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="block px-3 py-2.5 text-sm text-muted hover:text-accent transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/partnership" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-semibold text-accent">
+            Партнёрство
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

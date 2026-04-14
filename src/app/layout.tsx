@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,8 +7,13 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
+
 export const metadata: Metadata = {
-  title: "AI Agency — Искусственный интеллект для бизнеса и государства",
+  title: "AI Agency — Агентство Искусственного Интеллекта",
   description:
     "Проектирование и внедрение интеллектуальных систем, научные исследования, корпоративное обучение и стратегический консалтинг в области ИИ.",
 };
@@ -19,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={inter.variable}>
-      <body className="font-sans">{children}</body>
+    <html lang="ru" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="font-body">{children}</body>
     </html>
   );
 }

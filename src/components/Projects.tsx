@@ -1,94 +1,73 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const projects = [
   {
-    category: "NLP",
-    title: "Диалоговая платформа для Газпром Нефть",
-    description: "Корпоративный чат-бот с A/B-тестированием и интеграцией в SAP-систему. Сокращение времени ответа на запросы сотрудников на 60%.",
-    tags: ["NLP", "Чат-бот", "Enterprise"],
+    title: "Jane — Медицинская система поддержки решений",
+    category: "Медицина",
+    description: "ИИ-система для неврологов: диагностика эпилепсии, прогнозирование течения болезни, планирование лечения сложных педиатрических случаев.",
+    result: "Скорректированы диагнозы для нескольких сложных пациентов",
+    year: "2016",
   },
   {
-    category: "Computer Vision",
-    title: "Система контроля качества КамАЗ",
-    description: "Компьютерное зрение для автоматического контроля качества на производственной линии. Выявление дефектов в реальном времени.",
-    tags: ["CV", "Промышленность", "Real-time"],
+    title: "ИИ-Шеф — Ресторан SHE (White Rabbit Family)",
+    category: "HoReCa",
+    description: "Первый в мире ресторан с генерацией блюд на основе ИИ. Система генерации рецептов через матрицу совместимости ингредиентов.",
+    result: "Рост медиаприсутствия и аудитории ресторана",
+    year: "2020",
   },
   {
-    category: "Аналитика",
-    title: "Прогнозная аналитика для энергетики",
-    description: "Система предсказания пиковых нагрузок для оптимизации распределения энергоресурсов. Точность прогноза — 94%.",
-    tags: ["ML", "Энергетика", "Прогнозы"],
+    title: "Стандарты ИИ для автономного транспорта",
+    category: "Транспорт",
+    description: "Разработка 8 ГОСТов по системам ИИ для управления автономным транспортом совместно с Росстандартом.",
+    result: "15 государственных стандартов разработано",
+    year: "2019",
   },
   {
+    title: "Чат-бот «Белый Сад»",
+    category: "Бизнес",
+    description: "Telegram-бот для сбора анонимных отзывов клиентов сети центров здоровья и красоты.",
+    result: "90%+ позитивных отзывов к 3-му году работы",
+    year: "2018",
+  },
+  {
+    title: "VIRperson — Цифровые двойники",
     category: "R&D",
-    title: "Разработка ГОСТ-стандартов для ИИ",
-    description: "Участие в создании 15 государственных стандартов в области искусственного интеллекта совместно с Росстандартом.",
-    tags: ["Стандарты", "ГОСТ", "Регулирование"],
+    description: "Платформа создания цифровых копий людей на основе воспоминаний и опыта. Когнитивные агенты на базе персональной памяти.",
+    result: "Внутренний проект в стадии разработки",
+    year: "2023",
   },
   {
-    category: "Обучение",
-    title: "Программа повышения квалификации",
-    description: "Обучение руководителей и специалистов — 11 программ, более 1000 выпускников. Курсы по внедрению ИИ в управление.",
-    tags: ["Обучение", "EdTech", "Курсы"],
-  },
-  {
-    category: "Цифровые двойники",
-    title: "Лаборатория цифровых двойников VIRperson",
-    description: "Создание цифровых двойников для моделирования бизнес-процессов и принятия стратегических решений.",
-    tags: ["Digital Twin", "Моделирование", "Инновации"],
+    title: "Курс «Цифровая экономика» — РАНХиГС",
+    category: "Образование",
+    description: "Обучающий курс для 11,000+ руководителей школ по всей России. 4 модуля: основы ИИ, ML, нейросети, практика.",
+    result: "11,000+ обучившихся руководителей",
+    year: "2021",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24">
+    <section className="section-padding">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Проекты
-          </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            64 завершённых проекта для крупнейших предприятий и государственных структур
-          </p>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+          <div>
+            <p className="text-accent font-display text-sm font-semibold tracking-wider uppercase mb-3">Проекты</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-text">Реализованные кейсы</h2>
+          </div>
+          <a href="/projects" className="text-sm text-muted hover:text-accent transition-colors duration-300">Все проекты →</a>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300"
-            >
-              <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
-                {project.category}
-              </span>
-              <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">
-                {project.title}
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          {projects.map((p) => (
+            <div key={p.title} className="glass-card p-6 hover:border-accent/30 transition-all duration-300 group flex flex-col">
+              <div className="flex items-center justify-between mb-4">
+                <span className="px-3 py-1 text-xs font-display font-semibold text-accent bg-accent/10 rounded-full">{p.category}</span>
+                <span className="text-xs text-muted">{p.year}</span>
               </div>
-            </motion.div>
+              <h3 className="font-display text-lg font-bold text-text mb-3 group-hover:text-accent transition-colors duration-300">{p.title}</h3>
+              <p className="text-muted text-sm leading-relaxed mb-4 flex-1">{p.description}</p>
+              <div className="pt-4 border-t border-border">
+                <p className="text-xs text-accent/80">{p.result}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
